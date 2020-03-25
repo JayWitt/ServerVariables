@@ -7,13 +7,12 @@
     <title>Get Server Info</title>
 </head>
 <body>
-    <table border="1">
 <%
-foreach (string var in Request.ServerVariables)
-{
-  Response.Write("<tr><td>" + var + "</td><td>" + Request[var] + "</td></tr>");
-}
+    Response.Write("Deployment ID = " + Environment.GetEnvironmentVariable("WEBSITE_DEPLOYMENT_ID") + "<br>");
+    Response.Write("Stamp Name = " + Environment.GetEnvironmentVariable("WEBSITE_CURRENT_STAMPNAME") + "<br>");
+    Response.Write("Site Name = " + Environment.GetEnvironmentVariable("WEBSITE_IIS_SITE_NAME") + "<br>");
+    Response.Write("Computer Name = " + Environment.GetEnvironmentVariable("COMPUTERNAME") + "<br>");
+    Response.Write("Server Local IP = " + Request.ServerVariables["LOCAL_ADDR"] + "<br>");
 %>
-    </table>
 </body>
 </html>
