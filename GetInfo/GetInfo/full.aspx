@@ -13,14 +13,23 @@
         Response.Write(de.Key + "=" + de.Value + "<br>");
     }
 %>
+
     <table border="1">
 <%
+    string headers = "";
     foreach (string var in Request.ServerVariables)
     {
+        if (var == "ALL_HTTP")
+        {
+            headers = Request[var].Replace("HTTP_", "<br>");
+        }
+
         Response.Write("<tr><td>" + var + "</td><td>" + Request[var] + "</td></tr>");
 
     }
-%>
-    </table>
+    Response.Write("</table><br><h4>Headers:</h4><br />");
+
+    Response.Write(headers);
+ %>
 </body>
 </html>
