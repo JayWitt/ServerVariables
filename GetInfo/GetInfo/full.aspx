@@ -7,13 +7,24 @@
     <title>Get Full Server Info</title>
 </head>
 <body>
+<h4>Environment Variables</h4><br />
 <%
+    string val = "";
     foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
     {
-        Response.Write(de.Key + "=" + de.Value + "<br>");
+        if ((de.Key.ToString() == "WEBSITE_AUTH_SIGNING_KEY") || (de.Key.ToString() == "WEBSITE_AUTH_ENCRYPTION_KEY"))
+        {
+            val = "(removed)";
+        } else
+        {
+            val = de.Value.ToString();
+        }
+
+        Response.Write(de.Key + "=" + val + "<br>");
+
     }
 %>
-
+<h4>Server Variables</h4><br />
     <table border="1">
 <%
     string headers = "";
